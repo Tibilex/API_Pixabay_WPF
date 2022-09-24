@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace API_Pixabay.ViewModel
 {
@@ -31,7 +32,9 @@ namespace API_Pixabay.ViewModel
         public ObservableCollection<ImageBlockModel> ImagesList { get; set; }
         public string SearchingText { get; set; }
         public string SelectedItem { get; set; }
-        
+        public string DownloadLink { get; set; }
+        public string Color { get; set; }
+
 
         public RelayCommand SearchCommand { get; private set; }
         public RelayCommand SortRedCommand { get; private set; }
@@ -41,7 +44,9 @@ namespace API_Pixabay.ViewModel
         public RelayCommand SortBlackCommand { get; private set; }
         public RelayCommand SortWhiteCommand { get; private set; }
         public RelayCommand SortOrangeCommand { get; private set; }
+        public RelayCommand SortYellowCommand { get; private set; }
         public RelayCommand DownloadCommand { get; private set; }
+        public RelayCommand TestCommand { get; private set; }
 
         public ImageBlockViewModel()
         {
@@ -56,24 +61,37 @@ namespace API_Pixabay.ViewModel
         private void Commands()
         {
             SearchCommand = new RelayCommand(obj => SearchPhoto());
-            SortRedCommand = new RelayCommand(obj => SortRed());
-            SortGreenCommand = new RelayCommand(obj => SortGreen());
-            SortBlueCommand = new RelayCommand(obj => SortBlue());
-            SortPurpleCommand = new RelayCommand(obj => SortPurple());
-            SortBlackCommand = new RelayCommand(obj => SortBlack());
-            SortWhiteCommand = new RelayCommand(obj => SortWhite());
-            SortOrangeCommand = new RelayCommand(obj => SortOrange());
+            SortRedCommand = new RelayCommand(obj => SortForColors("Red"));
+            SortGreenCommand = new RelayCommand(obj => SortForColors("Green"));
+            SortBlueCommand = new RelayCommand(obj => SortForColors("Blue"));
+            SortPurpleCommand = new RelayCommand(obj => SortForColors("Purple"));
+            SortBlackCommand = new RelayCommand(obj => SortForColors("Black+White"));
+            SortWhiteCommand = new RelayCommand(obj => SortForColors("Gray"));
+            SortOrangeCommand = new RelayCommand(obj => SortForColors("Orange"));
+            SortYellowCommand = new RelayCommand(obj => SortForColors("Yellow"));
             DownloadCommand = new RelayCommand(obj => DownloadImage());
+            TestCommand = new RelayCommand(obj => test("123"));
+        }
+
+        private void test(string test)
+        {
+
         }
 
         private void DownloadImage()
         {
-            _savFileDialog.Filter = _imageFormatFilter;
-            _savFileDialog.ShowDialog();
-            if (_savFileDialog.ShowDialog() == true)
+            if (DownloadLink != null)
             {
-
+                _savFileDialog.Filter = _imageFormatFilter;
+                if (_savFileDialog.ShowDialog() == true)
+                {
+                    using (WebClient client = new())
+                    {
+                        client.DownloadFile(DownloadLink, _savFileDialog.FileName);
+                    }
+                }
             }
+            else { MessageBox.Show("Ссылка не найдена"); }
         }
 
         private void SearchPhoto()
@@ -89,14 +107,12 @@ namespace API_Pixabay.ViewModel
                 SearchingText = "Что ищем?";
             }
         }
-        private void SortRed() { string API = $"https://pixabay.com/api/?key=29849703-9f3414504f38cae34a4c64380&q=Red&image_type=photo&per_page=200"; GetPhoto(API);}
-        private void SortGreen() { string API = $"https://pixabay.com/api/?key=29849703-9f3414504f38cae34a4c64380&q=Green&image_type=photo&per_page=200"; GetPhoto(API);}
-        private void SortBlue() { string API = $"https://pixabay.com/api/?key=29849703-9f3414504f38cae34a4c64380&q=Blue&image_type=photo&per_page=200"; GetPhoto(API);}
-        private void SortPurple() { string API = $"https://pixabay.com/api/?key=29849703-9f3414504f38cae34a4c64380&q=Purple&image_type=photo&per_page=200"; GetPhoto(API);}
-        private void SortBlack() { string API = $"https://pixabay.com/api/?key=29849703-9f3414504f38cae34a4c64380&q=Black&image_type=photo&per_page=200"; GetPhoto(API);}
-        private void SortWhite() { string API = $"https://pixabay.com/api/?key=29849703-9f3414504f38cae34a4c64380&q=White&image_type=photo&per_page=200"; GetPhoto(API);}
-        private void SortOrange() { string API = $"https://pixabay.com/api/?key=29849703-9f3414504f38cae34a4c64380&q=Orange&image_type=photo&per_page=200"; GetPhoto(API);}
 
+        private void SortForColors(string color) 
+        { 
+            string API = $"https://pixabay.com/api/?key=29849703-9f3414504f38cae34a4c64380&q={color}&image_type=photo&per_page=200";
+            GetPhoto(API);
+        }
 
         private async void GetPhoto(string api)
         {
@@ -113,7 +129,9 @@ namespace API_Pixabay.ViewModel
                 ImagesList.Add(new ImageBlockModel(data.hits[i].webformatURL,
                     data.hits[i].likes.ToString(),
                     data.hits[i].comments.ToString(),
-                    data.hits[i].tags));
+                    data.hits[i].tags,
+                    data.hits[i].largeImageURL.ToString()));
+
             }
         }
     }

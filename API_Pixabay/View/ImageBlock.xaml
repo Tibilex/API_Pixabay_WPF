@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
-        <Border BorderBrush="{StaticResource Light.Green}" BorderThickness="2" CornerRadius="6" Background="{StaticResource Dark.Grey}">
+        <Border Background="{StaticResource Dark.Grey}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -22,7 +22,6 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Style="{StaticResource DownloadBtn}" Command="{Binding DownloadCommand}" Grid.ColumnSpan="4"  Content="Скачать"/>
                 </Grid>
             </Grid>
         </Border>

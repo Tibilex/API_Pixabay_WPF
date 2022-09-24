@@ -1,4 +1,5 @@
-﻿using API_Pixabay.ViewModel;
+﻿using API_Pixabay.Model;
+using API_Pixabay.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,12 @@ namespace API_Pixabay
     public partial class MainWindow : Window
     {
         private static MainWindow? s_window;
+        private ImageBlockViewModel _imageBlockViewModel;
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ImageBlockViewModel();
+            _imageBlockViewModel = new();
+            DataContext = _imageBlockViewModel;
             s_window = this;
         }
 
@@ -45,6 +48,13 @@ namespace API_Pixabay
             {
                 s_window.DragMove();
             }
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            ImageBlockModel p = (ImageBlockModel)ImageList.SelectedItem;
+            _imageBlockViewModel.DownloadLink =  p.ImageDownloadURL.ToString();
         }
     }
 }

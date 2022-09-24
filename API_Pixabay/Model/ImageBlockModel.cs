@@ -13,6 +13,7 @@ namespace API_Pixabay.Model
         private string _imageLikes;
         private string _imageComments;
         private string _imageTag;
+        private string _imageDownloadURL;
 
         public string Image
         {
@@ -52,17 +53,28 @@ namespace API_Pixabay.Model
             }
         }
 
+        public string ImageDownloadURL
+        {
+            get => _imageDownloadURL;
+            set
+            {
+                _imageDownloadURL = value;
+                OnPropertyChanged("ImageDownloadURL");
+            }
+        }
+
         public ImageBlockModel(string imageURL)
         {
             Image = imageURL;
         }
 
-        public ImageBlockModel(string imageURL,string imgLikes, string imgComments, string imageTag)
+        public ImageBlockModel(string imageURL,string imgLikes, string imgComments, string imageTag, string imageDownloadURL)
         {
             Image = imageURL;
             ImageLikes = imgLikes;
             ImageComments = imgComments;
             ImageTag = imageTag;
+            ImageDownloadURL = imageDownloadURL;
         }
     }
 }

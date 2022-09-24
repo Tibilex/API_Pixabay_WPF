@@ -51,8 +51,38 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="border" BorderBrush="black" BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="8" Margin="{TemplateBinding Padding}">
+                    <Border x:Name="border" BorderBrush="black" BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="6" Margin="{TemplateBinding Padding}">
                         <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BlackWhiteyBtnBase" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" BorderBrush="black" BorderThickness="0" Background="{TemplateBinding Background}" Margin="{TemplateBinding Padding}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BlackWhiteyBtn" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource Dark.Grey}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" BorderBrush="black" BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="6" Margin="{TemplateBinding Padding}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Style="{StaticResource BlackWhiteyBtnBase}" Command="{Binding SortBlackCommand}" Background="Black"/>
+                            <Button Grid.Column="1" Style="{StaticResource BlackWhiteyBtnBase}" Command="{Binding SortBlackCommand}" Background="white"/>
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -73,16 +103,18 @@
     </Style>
     <Style x:Key="DownloadBtn" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource Light.Green}"/>
-        <Setter Property="Foreground" Value="white"/>
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontFamily" Value="{StaticResource jura}"/>
-        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontStyle" Value="Oblique"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Margin" Value="4 0 4 4"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="4">
-                        <Border x:Name="borderInner" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="8">
+                        <Border x:Name="borderInner" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="4">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}"/>
                         </Border>
                     </Border>
@@ -91,7 +123,7 @@
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
                                 <Storyboard Storyboard.TargetProperty="Background.Color">
-                                    <ColorAnimation To="#7EB693" Duration="0:0:0:1" SpeedRatio="2"/>
+                                    <ColorAnimation To="#eb525f" Duration="0:0:0:1" SpeedRatio="2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -105,14 +137,14 @@
                         <EventTrigger RoutedEvent="MouseLeave">
                             <BeginStoryboard>
                                 <Storyboard Storyboard.TargetProperty="Background.Color">
-                                    <ColorAnimation To="#12aa92" Duration="0:0:0:1" SpeedRatio="5"/>
+                                    <ColorAnimation To="#12aa92" Duration="0:0:0:1" SpeedRatio="2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                         <EventTrigger RoutedEvent="MouseLeave">
                             <BeginStoryboard>
                                 <Storyboard Storyboard.TargetProperty="Foreground.Color">
-                                    <ColorAnimation To="#274C5B" Duration="0:0:0:1" SpeedRatio="5"/>
+                                    <ColorAnimation To="Black" Duration="0:0:0:1" SpeedRatio="2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -127,6 +159,12 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style x:Key="UCWindiwAnim" TargetType="Border">
+        <Setter Property="BorderBrush" Value="{StaticResource Light.Green}"/>
+        <Setter Property="Background" Value="{StaticResource Dark.Grey}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="CornerRadius" Value="6"/>
     </Style>
     <Style x:Key="SearchBar" TargetType="TextBox">
         <Setter Property="BorderBrush" Value="{StaticResource Light.Grey}"/>
