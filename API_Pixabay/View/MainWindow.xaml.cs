@@ -1,19 +1,8 @@
 ﻿using API_Pixabay.Model;
 using API_Pixabay.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace API_Pixabay
 {
@@ -53,8 +42,19 @@ namespace API_Pixabay
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            ImageBlockModel p = (ImageBlockModel)ImageList.SelectedItem;
-            _imageBlockViewModel.DownloadLink =  p.ImageDownloadURL.ToString();
+            ImageBlockModel item = (ImageBlockModel)ImageList.SelectedItem;
+            if (item != null)
+            {
+                _imageBlockViewModel.DownloadLink = item.ImageDownloadURL.ToString();
+            }
+        }
+
+        private void TextBox_IsMouseCapturedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (SearchTextBox.Text == "Найти Пиксели=)")
+            {
+                SearchTextBox.Text = "";
+            }
         }
     }
 }

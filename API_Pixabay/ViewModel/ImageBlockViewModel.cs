@@ -1,7 +1,6 @@
 ﻿using API_Pixabay.Helpers;
 using API_Pixabay.Model;
 using Microsoft.Win32;
-using System;
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Text.Json;
@@ -33,7 +32,6 @@ namespace API_Pixabay.ViewModel
         public string SearchingText { get; set; }
         public string SelectedItem { get; set; }
         public string DownloadLink { get; set; }
-        public string Color { get; set; }
 
 
         public RelayCommand SearchCommand { get; private set; }
@@ -46,7 +44,7 @@ namespace API_Pixabay.ViewModel
         public RelayCommand SortOrangeCommand { get; private set; }
         public RelayCommand SortYellowCommand { get; private set; }
         public RelayCommand DownloadCommand { get; private set; }
-        public RelayCommand TestCommand { get; private set; }
+        public RelayCommand SortTransparentCommand { get; private set; }
 
         public ImageBlockViewModel()
         {
@@ -56,6 +54,7 @@ namespace API_Pixabay.ViewModel
             ImagesList = new();
             GetPhoto(_pixabay_API);
             Commands();
+            SearchingText = "Найти Пиксели=)";
         }
 
         private void Commands()
@@ -69,13 +68,8 @@ namespace API_Pixabay.ViewModel
             SortWhiteCommand = new RelayCommand(obj => SortForColors("Gray"));
             SortOrangeCommand = new RelayCommand(obj => SortForColors("Orange"));
             SortYellowCommand = new RelayCommand(obj => SortForColors("Yellow"));
+            SortTransparentCommand = new RelayCommand(obj => SortForColors("Transparent+background"));
             DownloadCommand = new RelayCommand(obj => DownloadImage());
-            TestCommand = new RelayCommand(obj => test("123"));
-        }
-
-        private void test(string test)
-        {
-
         }
 
         private void DownloadImage()

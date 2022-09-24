@@ -7,5 +7,18 @@
     <SolidColorBrush x:Key="Light.Green" Color="#12aa92"/>
     <SolidColorBrush x:Key="Color.White" Color="White"/>
     <SolidColorBrush x:Key="Color.SoftGreen" Color="#7EB693"/>
+    <LinearGradientBrush x:Name="GradientRed" x:Key="Color.Gradient.Red" StartPoint="0.4,1" EndPoint="1,0">
+        <GradientStop Color="#eb525f" Offset="0"/>
+        <GradientStop Color="White" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color.Gradient.Green" StartPoint="0.2,1" EndPoint="1,0">
+        <GradientStop Color="#12aa92" Offset="0"/>
+        <GradientStop Color="#96ec87" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="Color.Gradient.UA" StartPoint="0,8" EndPoint="1,0">
+        <GradientStop Color="Yellow" Offset="0"/>
+        <GradientStop Color="wHITE" Offset="1"/>
+    </LinearGradientBrush>
+    
 
 </ResourceDictionary>

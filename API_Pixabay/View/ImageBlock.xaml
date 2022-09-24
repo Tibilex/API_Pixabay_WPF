@@ -14,14 +14,18 @@
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" Source="{Binding Image}" Stretch="Uniform" Width="300" Height="260"/>
-                <TextBlock Grid.Row="0" Style="{StaticResource ImageText}" Panel.ZIndex="1" VerticalAlignment="Bottom" Text="{Binding ImageTag}"/>
+                <TextBlock Grid.Row="0" Style="{StaticResource ImageText}" Panel.ZIndex="1" VerticalAlignment="Bottom" Text="{Binding ImageTag}" Foreground="{StaticResource Light.Grey}"/>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Style="{StaticResource ImageText}" Text="Нравится"/>
+                    <TextBlock Grid.Column="1" Style="{StaticResource ImageText}" Text="{Binding ImageLikes}" Foreground="{StaticResource Light.Red}"/>
+                    <TextBlock Grid.Column="2" Style="{StaticResource ImageText}" Text="Коментарии"/>
+                    <TextBlock Grid.Column="3" Style="{StaticResource ImageText}" Text="{Binding ImageComments}" Foreground="{StaticResource Light.Red}"/>
                 </Grid>
             </Grid>
         </Border>
