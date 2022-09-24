@@ -19,6 +19,9 @@
         <GradientStop Color="Yellow" Offset="0"/>
         <GradientStop Color="wHITE" Offset="1"/>
     </LinearGradientBrush>
-    
+    <LinearGradientBrush x:Key="Color.Gradient.Blue" StartPoint="0.5,0.5" EndPoint="1,0.5">
+        <GradientStop Color="wHITE" Offset="0"/>
+        <GradientStop Color="black" Offset="1"/>
+    </LinearGradientBrush>
 
 </ResourceDictionary>

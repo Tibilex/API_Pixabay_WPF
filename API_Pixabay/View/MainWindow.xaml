@@ -63,7 +63,6 @@
                 <Button Grid.Column="4" Style="{StaticResource CategoryBtn}" Background="#f9cc01"  Command="{Binding SortYellowCommand}"/>
                 <Button Grid.Column="5" Style="{StaticResource CategoryBtn}" Background="#8d8d8d" Command="{Binding SortWhiteCommand}"/>
                 <Button Grid.Column="6" Style="{StaticResource CategoryBtn}" Background="Tomato" Command="{Binding SortOrangeCommand}"/>
-                <!--<Button Grid.Column="7" Style="{StaticResource BlackWhiteyBtn}" Command="{Binding SortBlackCommand}"/>-->
                 <Button Grid.Column="7" Style="{StaticResource CategoryBtn}" Background="{StaticResource Color.Gradient.BlackWhite}" Command="{Binding SortBlackCommand}"/>
                 <Button Grid.Column="8" Style="{StaticResource CategoryBtn}" Command="{Binding SortTransparentCommand}">
                     <Image Source="/Resources/Img/background.jpg" Stretch="UniformToFill"/>
